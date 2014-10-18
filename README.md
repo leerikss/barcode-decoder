@@ -27,4 +27,4 @@ If successfull, the code is now in your clipboard, paste it wherever.
 
 # Credits
 - zxing (https://github.com/zxing/zxing) - is being used to decode the bitmap
-- appbundler plugin (https://github.com/federkasten/appbundler-plugin) - is being used to bundle the jar as a OSX app
+- appbundler-plugin (https://github.com/federkasten/appbundler-plugin) - is being used to bundle the jar as a OSX app
