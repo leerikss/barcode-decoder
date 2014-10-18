@@ -1,5 +1,5 @@
 # About
-A very simple app for decoding an image from the clipboard, placing the decoded code (if successfull) back to the clipboard.
+A very simple app for decoding a barcode screenshot from the clipboard, placing the decoded code back to the clipboard (if successfull).
 I created this for personal usage when paying invoices.
 I basically take a screenshot of a barcode (usually from a PDF file) into the clipboard, then run this app, and finally paste the
 decoded code from the clipboard into a specific field on my online banking site.
