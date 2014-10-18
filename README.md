@@ -1,7 +1,7 @@
 # About
-A simple app for decoding an image that is copied into the clipboard, placing the decoded back code to the clipboard.
+A very simple app for decoding an image that is copied into the computer clipboard, placing the decoded code back code to the clipboard.
 I created this for personal usage when paying invoices using online banking services.
-I basically take a screenshot of the barcode (usually from a PDF) into the clipboard, than run this app, then paste
+I basically take a screenshot of the barcode (usually from a PDF file) into the clipboard, than run this app, than paste
 the decoded code (now in clipboard) into a specific field on my online banking web page.
 
 # How to build
@@ -16,7 +16,7 @@ https://github.com/federkasten/appbundler-plugin
 ```
 mvn package appbundle:bundle
 ```
-# How to user
+# How to use
 Copy a barcode into the clipboard, then run this app:
 ```
 java -jar barcode-decoder-1.0-jar-with-dependencies.jar
