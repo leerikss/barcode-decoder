@@ -9,7 +9,7 @@ As a standalone jar:
 ```
 mvn install
 ```
-As an OSX app
+As an OSX app:
 - Requires you to first clone and install this from github:
 https://github.com/federkasten/appbundler-plugin
 - When appbuilder-plugin is installed (build.sh && mvn install), run
