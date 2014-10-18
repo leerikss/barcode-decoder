@@ -1,5 +1,5 @@
 # About
-A very simple app for decoding an image from the clipboard, placing the decoded code (if successfull) back code to the clipboard.
+A very simple app for decoding an image from the clipboard, placing the decoded code (if successfull) back to the clipboard.
 I created this for personal usage when paying invoices.
 I basically take a screenshot of a barcode (usually from a PDF file) into the clipboard, then run this app, and finally paste the
 decoded code from the clipboard into a specific field on my online banking site.
@@ -26,5 +26,6 @@ A popup will show if the decoding was successfull.
 If successfull, the code is now in your clipboard, paste it wherever.
 
 # Credits
+- konker (https://github.com/konker) - for coming up with the idea
 - zxing (https://github.com/zxing/zxing) - is being used to decode the bitmap
 - appbundler-plugin (https://github.com/federkasten/appbundler-plugin) - is being used to bundle the jar as a OSX app
