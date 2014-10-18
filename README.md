@@ -24,3 +24,7 @@ java -jar barcode-decoder-1.0-jar-with-dependencies.jar
 Or for OSX, just double click the "Barcode Decoder" app.
 A popup will show if decoding was successfull.
 If successfull, the code is now in your clipboard, paste it wherever.
+
+# Credits
+- zxing (https://github.com/zxing/zxing) is used to decode the bitmap
+- appbundler plugin (https://github.com/federkasten/appbundler-plugin) is used to create the OSX app bundle
