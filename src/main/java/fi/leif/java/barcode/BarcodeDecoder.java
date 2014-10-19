@@ -60,9 +60,10 @@ public class BarcodeDecoder {
       BufferedImage img = bc.getImageFromClipboard();
       String code = bc.decodeBarcode(img);
       bc.setToClipboard(code);
-      bc.popup("Barcode was successfully decoded and set into your clipboard");
+      bc.popup("Successfully decoded into clipboard: "+code);
+      System.out.println(code);
     } catch(Exception e) {
-      bc.popup("Decoding the barcode failed!");
+      bc.popup("Decoding failed!");
       e.printStackTrace();
     }
   }

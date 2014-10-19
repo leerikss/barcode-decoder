@@ -9,14 +9,13 @@ decoded code from the clipboard into a specific field on my online banking site.
 ```
 mvn package
 ```
-## Windows: TODO
-
 ## Linux: Create a executable file (shell script with a generic binary payload)
 - Credits to: https://coderwall.com/p/ssuaxa
 ```
-cat src/main/scripts/stub.sh target/barcode-decoder-1.0-SNAPSHOT.one-jar.jar > target/barcode-decoder.run
+cat src/main/scripts/stub.sh target/barcode-decoder-1.0-0.one-jar.jar > target/barcode-decoder.run
 chmod +x target/barcode-decoder.run
 ```
+- Run by ./target/barcode-decoder.run (or by double clicking it)
 
 ## OSX: Bundle jar as a native app
 - Requires you to clone and install this repo first from github:
@@ -25,6 +24,9 @@ https://github.com/federkasten/appbundler-plugin
 ```
 mvn package appbundle:bundle
 ```
+- The app is being generated into the ls target/barcode-decoder-1.0.0 folder
+
+## Windows: TODO 
 
 # Eclipse
 If you're using the Eclipse IDE, add the necessary eclipse project files by running
