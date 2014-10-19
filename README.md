@@ -24,7 +24,7 @@ export DISPLAY=":0.0"
 ## OSX: Bundle jar as a native app
 - Requires you to clone and install this repo from github:
 https://github.com/federkasten/appbundler-plugin
-- After you've installed the appbuilder-plugin, edit the pom.xml and uncomment the io.github.appbundler <plugin>. Than run:
+- After you've installed the appbuilder-plugin, edit the pom.xml and uncomment the io.github.appbundler plugin. Than run:
 ```
 mvn package appbundle:bundle
 ```
