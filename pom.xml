@@ -108,7 +108,7 @@
 
       <!-- Creates a windows executable -->
       <!-- Uncomment this plugin if you want to generate a windows exe -->
-
+<!--
       <plugin>
 	<groupId>com.akathist.maven.plugins.launch4j</groupId>
 	<artifactId>launch4j-maven-plugin</artifactId>
@@ -121,7 +121,6 @@
 	      <goal>launch4j</goal>
 	    </goals>
 	    <configuration>
-<!--	      <headerType>console</headerType> -->
 	      <headerType>gui</headerType> 
 	      <jar>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar</jar>
 	      <outfile>${project.build.directory}/barcode-decoder-win.exe</outfile>
@@ -151,17 +150,9 @@
 	  </execution>
 	</executions>
       </plugin>
-
+-->
 
     </plugins>
   </build>
-
-  <!-- One-Jar is in the googlecode repository -->
-  <pluginRepositories>
-    <pluginRepository>
-      <id>onejar-maven-plugin.googlecode.com</id>
-      <url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
-    </pluginRepository>
-  </pluginRepositories>
 
 </project>
