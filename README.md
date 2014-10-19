@@ -15,7 +15,7 @@ mvn package
 cat src/main/scripts/stub.sh target/barcode-decoder-1.0-0.one-jar.jar > target/barcode-decoder.run
 chmod +x target/barcode-decoder.run
 ```
-- Run by ./target/barcode-decoder.run (or by double clicking it)
+- Run by ./target/barcode-decoder.run
 
 ## OSX: Bundle jar as a native app
 - Requires you to clone and install this repo first from github:
