@@ -60,8 +60,8 @@ public class BarcodeDecoder {
       BufferedImage img = bc.getImageFromClipboard();
       String code = bc.decodeBarcode(img);
       bc.setToClipboard(code);
-      bc.popup("Successfully decoded into clipboard: "+code);
-      System.out.println(code);
+      bc.popup("Successfully decoded into clipboard:\n"+code);
+      System.out.println("Decoded: "+code);
     } catch(Exception e) {
       bc.popup("Decoding failed!");
       e.printStackTrace();

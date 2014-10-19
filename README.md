@@ -15,12 +15,16 @@ mvn package
 cat src/main/scripts/stub.sh target/barcode-decoder-1.0-0.one-jar.jar > target/barcode-decoder.run
 chmod +x target/barcode-decoder.run
 ```
-- Run by ./target/barcode-decoder.run
+- Run by ./target/barcode-decoder.run (or double click if distro supports it)
+- If you get errors when running from the command line, you might have to set your DISPLAY env variable
+```
+export DISPLAY=":0.0"
+```
 
 ## OSX: Bundle jar as a native app
-- Requires you to clone and install this repo first from github:
+- Requires you to clone and install this repo from github:
 https://github.com/federkasten/appbundler-plugin
-- When appbuilder-plugin is properly installed (build.sh && mvn install), run
+- After you've installed the appbuilder-plugin, edit the pom.xml and uncomment the io.github.appbundler <plugin>. Than run:
 ```
 mvn package appbundle:bundle
 ```
