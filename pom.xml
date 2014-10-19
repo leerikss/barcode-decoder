@@ -39,7 +39,7 @@
 	</configuration>
       </plugin>
 
-      <!-- Java 1.5 -->
+      <!-- Set runtime version to 1.5 -->
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-compiler-plugin</artifactId>
@@ -50,21 +50,26 @@
 	</configuration>
       </plugin>
 
-      <!-- Create a jar including all dependencies -->
+      <!-- Create a jar containing all librarys -->
       <plugin>
-	<groupId>org.dstovall</groupId>
-	<artifactId>onejar-maven-plugin</artifactId>
-	<version>1.4.4</version>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-shade-plugin</artifactId>
+	<version>1.4</version>
 	<executions>
-	  <execution>
-	    <goals>
-	      <goal>one-jar</goal>
-	    </goals>
-	  </execution>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
 	</executions>
+	<configuration>
+          <shadedArtifactAttached>true</shadedArtifactAttached>
+          <shadedClassifierName>shaded</shadedClassifierName>
+	</configuration>
       </plugin>
 
-      <!-- Make this jar executable -->
+      <!-- Make this jar executable by adding a manifest -->
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-jar-plugin</artifactId>
@@ -103,7 +108,7 @@
 
       <!-- Creates a windows executable -->
       <!-- Uncomment this plugin if you want to generate a windows exe -->
-<!--
+
       <plugin>
 	<groupId>com.akathist.maven.plugins.launch4j</groupId>
 	<artifactId>launch4j-maven-plugin</artifactId>
@@ -116,9 +121,10 @@
 	      <goal>launch4j</goal>
 	    </goals>
 	    <configuration>
-	      <headerType>gui</headerType>
-	      <jar>${project.build.directory}/${artifactId}-${version}.one-jar.jar</jar>
-	      <outfile>${project.build.directory}/barcodedecoder.exe</outfile>
+<!--	      <headerType>console</headerType> -->
+	      <headerType>gui</headerType> 
+	      <jar>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar</jar>
+	      <outfile>${project.build.directory}/barcode-decoder-win.exe</outfile>
 	      <downloadUrl>http://java.com/download</downloadUrl>
 	      <classPath>
 		<mainClass>fi.leif.java.barcode.BarcodeDecoder</mainClass>
@@ -139,13 +145,13 @@
 		<productName>${project.name}</productName>
 		<companyName></companyName>
 		<internalName>Barcode Decoder</internalName>
-		<originalFilename>barcodedecoder.exe</originalFilename>
+		<originalFilename>barcode-decoder-win.exe</originalFilename>
 	      </versionInfo>
 	    </configuration>
 	  </execution>
 	</executions>
       </plugin>
--->
+
 
     </plugins>
   </build>
