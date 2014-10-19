@@ -79,27 +79,26 @@
       </plugin>
 
       <!-- Bundle as an OSX app running Java1.7+ -->
-      <!-- NOTE: Requires an installation of the appbundler-plugin -->
-      <!-- https://github.com/federkasten/appbundler-plugin -->
+      <!-- NOTE: Requires an installation of the appbundler-plugin (https://github.com/federkasten/appbundler-plugin) -->
       <!-- Uncomment this plugin if you want to generate a OSX app -->
-      <!--
-	  <plugin>
-	  <groupId>io.github.appbundler</groupId>
-	  <artifactId>appbundle-maven-plugin</artifactId>
-	  <version>1.0-SNAPSHOT</version>
-	  <configuration>
+<!--
+      <plugin>
+	<groupId>io.github.appbundler</groupId>
+	<artifactId>appbundle-maven-plugin</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<configuration>
 	  <mainClass>fi.leif.java.barcode.BarcodeDecoder</mainClass>
 	  <iconFile>src/main/resources/barcode-decoder.icns</iconFile>
-	  </configuration>
-	  <executions>
+	</configuration>
+	<executions>
 	  <execution>
-	  <phase>package</phase>
-	  <goals>
-	  <goal>bundle</goal>
-	  </goals>
+	    <phase>package</phase>
+	    <goals>
+	      <goal>bundle</goal>
+	    </goals>
 	  </execution>
-	  </executions>
-	  </plugin>
+	</executions>
+      </plugin>
 -->
 
       <!-- Creates a windows executable -->
