@@ -79,7 +79,7 @@
 
 			<!-- Bundle as an OSX app running Java1.7+ -->
 			<!-- NOTE: Requires an installation of the appbundler-plugin -->
-			<!-- https://github.com/federkasten/appbundler-plugin 
+			<!-- https://github.com/federkasten/appbundler-plugin -->
 			<plugin>
 				<groupId>io.github.appbundler</groupId>
 				<artifactId>appbundle-maven-plugin</artifactId>
@@ -97,7 +97,6 @@
 					</execution>
 				</executions>
 			</plugin>
--->
 
 			<!-- Create a windows executable 
 			<plugin>
