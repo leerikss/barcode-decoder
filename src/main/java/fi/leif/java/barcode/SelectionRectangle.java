@@ -1,22 +1,29 @@
 package fi.leif.java.barcode;
 
+import java.awt.AWTException;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Area;
+import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,14 +32,14 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class SnipIt {
+public class SelectionRectangle {
 
-    private SnipItPane pane;
-    protected ScreenshotTaker st;
+    private ScreenshotTaker screenshotTaker;
+    private BufferedImage background;
     
-    public SnipIt(ScreenshotTaker st) {
+    public SelectionRectangle(ScreenshotTaker screenshotTaker) {
         
-        this.st = st;
+        this.screenshotTaker = screenshotTaker;
         
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -42,33 +49,43 @@ public class SnipIt {
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                 }
 
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("Test");
                 frame.setUndecorated(true);
-                // This works differently under Java 6
-                frame.setBackground(new Color(0, 0, 0, 0));
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setLayout(new BorderLayout());
-                pane = new SnipItPane();
-                frame.add(pane);
-                frame.setBounds(getVirtualBounds());
+                frame.add(new BackgroundPane());
+                frame.pack();
+                frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
-            
+
         });
     }
 
-    public class SnipItPane extends JPanel {
+    public class BackgroundPane extends JPanel {
 
         private Point mouseAnchor;
         private Point dragPoint;
 
         private SelectionPane selectionPane;
 
-        public SnipItPane() {
-            setOpaque(false);
-            setLayout(null);
+        public Rectangle getBounds() {
+            return this.selectionPane.getBounds();
+        }
+        public BackgroundPane() {
             selectionPane = new SelectionPane();
+            try {
+                Robot bot = new Robot();
+                background = bot.createScreenCapture(getScreenViewableBounds());
+            } catch (AWTException ex) {
+                Logger.getLogger(SelectionRectangle.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            selectionPane = new SelectionPane();
+            setLayout(null);
             add(selectionPane);
+
             MouseAdapter adapter = new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
@@ -99,38 +116,29 @@ public class SnipIt {
                     selectionPane.revalidate();
                     repaint();
                 }
+
             };
             addMouseListener(adapter);
             addMouseMotionListener(adapter);
+
         }
 
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-
             Graphics2D g2d = (Graphics2D) g.create();
-
-            Rectangle bounds = new Rectangle(0, 0, getWidth(), getHeight());
-            Area area = new Area(bounds);
-            area.subtract(new Area(selectionPane.getBounds()));
-
-            g2d.setColor(new Color(192, 192, 192, 64));
-            g2d.fill(area);
-
+            g2d.drawImage(background, 0, 0, this);
+            g2d.dispose();
         }
-        
-        public Rectangle getBounds() {
-            return this.selectionPane.getBounds();
-        }
+
     }
 
     public class SelectionPane extends JPanel {
 
         private JButton button;
-        // private JLabel label;
 
         public SelectionPane() {
-            button = new JButton("Select");
+            button = new JButton("Decode");
             setOpaque(false);
 
             setLayout(new GridBagLayout());
@@ -146,7 +154,10 @@ public class SnipIt {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     SwingUtilities.getWindowAncestor(SelectionPane.this).dispose();
-                    st.areaSelected(null);
+                    Rectangle r = getBounds();
+                    BufferedImage screenshot = background.getSubimage((int)r.getMinX(), (int)r.getMinY(), 
+                            (int)r.getWidth(), (int)r.getHeight() );
+                    screenshotTaker.areaSelected( screenshot);
                 }
             });
         }
@@ -155,37 +166,43 @@ public class SnipIt {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g.create();
-            // I've chosen NOT to fill this selection rectangle, so that
-            // it now appears as if you're "cutting" away the selection
-//            g2d.setColor(new Color(128, 128, 128, 64));
-//            g2d.fillRect(0, 0, getWidth(), getHeight());
+            g2d.setColor(new Color(128, 128, 128, 64));
+            g2d.fillRect(0, 0, getWidth(), getHeight());
 
-            float dash1[] = {4.0f};
+            float dash1[] = {3.0f};
             BasicStroke dashed =
-                    new BasicStroke(1.0f,
-                    BasicStroke.CAP_BUTT,
-                    BasicStroke.JOIN_MITER,
-                    1.0f, dash1, 0.0f);
+                            new BasicStroke(1.0f,
+                            BasicStroke.CAP_BUTT,
+                            BasicStroke.JOIN_MITER,
+                            1.0f, dash1, 0.0f);
             g2d.setColor(Color.GRAY);
             g2d.setStroke(dashed);
             g2d.drawRect(0, 0, getWidth() - 3, getHeight() - 3);
             g2d.dispose();
         }
+
     }
 
-    public static Rectangle getVirtualBounds() {
-
-        Rectangle bounds = new Rectangle(0, 0, 0, 0);
-
+    public static Rectangle getScreenViewableBounds() {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice lstGDs[] = ge.getScreenDevices();
-        for (GraphicsDevice gd : lstGDs) {
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
 
-            bounds.add(gd.getDefaultConfiguration().getBounds());
+        return getScreenViewableBounds(gd);
+    }
 
+    public static Rectangle getScreenViewableBounds(GraphicsDevice gd) {
+        Rectangle bounds = new Rectangle(0, 0, 0, 0);
+        if (gd != null) {
+            GraphicsConfiguration gc = gd.getDefaultConfiguration();
+            bounds = gc.getBounds();
+
+            Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(gc);
+
+            bounds.x += insets.left;
+            bounds.y += insets.top;
+            bounds.width -= (insets.left + insets.right);
+            bounds.height -= (insets.top + insets.bottom);
         }
-
         return bounds;
-
     }
 }

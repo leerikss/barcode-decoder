@@ -8,15 +8,14 @@ import java.awt.image.BufferedImage;
 public class ScreenshotTaker {
     
     public ScreenshotTaker() {
-        new SnipIt(this);
+        new SelectionRectangle(this);
     }
     
-    public void areaSelected(Rectangle r) {
+    public void areaSelected(BufferedImage screenshot) {
         BarcodeDecoder bd = new BarcodeDecoder();
         try {
-            BufferedImage img = new Robot().createScreenCapture(r);
             bd = new BarcodeDecoder();
-            String code = bd.decodeBarcode(img);
+            String code = bd.decodeBarcode(screenshot);
             System.out.println(code);
             bd.popup("Barcode decoded successfully into clipboard!\nCode: "+code);
             bd.setToClipboard(code);
