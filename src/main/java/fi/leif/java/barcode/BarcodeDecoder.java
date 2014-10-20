@@ -85,7 +85,7 @@ public class BarcodeDecoder {
    * @return decoded barcode
    * @throws Exception If unable to decode for some reason
    */
-  private String decodeBarcode(BufferedImage img) throws Exception {
+  public String decodeBarcode(BufferedImage img) throws Exception {
     LuminanceSource source = new BufferedImageLuminanceSource(img);
     BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));		
     MultiFormatReader barcodeReader = new MultiFormatReader();		
@@ -97,7 +97,7 @@ public class BarcodeDecoder {
    * Sets the passed String to the clipboard
    * @param code Code to be set to the clipboard
    */
-  private void setToClipboard(String code) {
+  public void setToClipboard(String code) {
     StringSelection stringSelection = new StringSelection (code);
     Clipboard cp = Toolkit.getDefaultToolkit ().getSystemClipboard ();
     cp.setContents (stringSelection, null);
@@ -107,7 +107,7 @@ public class BarcodeDecoder {
    * Displays a popup with the passed message
    * @param message
    */
-  private void popup(String message) {
+  public void popup(String message) {
     JOptionPane.showMessageDialog(null, message);
   }
 }
