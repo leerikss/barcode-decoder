@@ -1,4 +1,4 @@
-package fi.leif.java.barcode;
+package fi.leif.java.screenshot.decoder.selection;
 
 import java.awt.AWTException;
 import java.awt.BasicStroke;
@@ -33,14 +33,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class SelectionRectangle {
+import fi.leif.java.screenshot.decoder.Screenshot;
 
-    private ScreenshotTaker screenshotTaker;
+public class FillAreaSelection {
+
+    private Screenshot screenshot;
     private BufferedImage background;
     
-    public SelectionRectangle(ScreenshotTaker screenshotTaker) {
+    public FillAreaSelection(Screenshot screenshot) {
         
-        this.screenshotTaker = screenshotTaker;
+        this.screenshot = screenshot;
         
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -81,7 +83,7 @@ public class SelectionRectangle {
                 Robot bot = new Robot();
                 background = bot.createScreenCapture(getScreenViewableBounds());
             } catch (AWTException ex) {
-                Logger.getLogger(SelectionRectangle.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FillAreaSelection.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             selectionPane = new SelectionPane();
@@ -157,9 +159,9 @@ public class SelectionRectangle {
                 public void actionPerformed(ActionEvent e) {
                     SwingUtilities.getWindowAncestor(SelectionPane.this).dispose();
                     Rectangle r = getBounds();
-                    BufferedImage screenshot = background.getSubimage((int)r.getMinX(), (int)r.getMinY(), 
+                    BufferedImage img = background.getSubimage((int)r.getMinX(), (int)r.getMinY(), 
                             (int)r.getWidth(), (int)r.getHeight() );
-                    screenshotTaker.areaSelected( screenshot);
+                    screenshot.handleImage( img);
                 }
             });
         }

@@ -1,4 +1,4 @@
-package fi.leif.java.barcode;
+package fi.leif.java.screenshot.decoder.selection;
 
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
@@ -26,14 +26,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class SnipIt {
+import fi.leif.java.screenshot.decoder.Screenshot;
+
+public class CutAreaSelection {
 
     private SnipItPane pane;
-    protected ScreenshotTaker st;
+    protected Screenshot screenshot;
     
-    public SnipIt(ScreenshotTaker st) {
+    public CutAreaSelection(Screenshot screenshot) {
         
-        this.st = st;
+        this.screenshot = screenshot;
         
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -149,7 +151,7 @@ public class SnipIt {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     SwingUtilities.getWindowAncestor(SelectionPane.this).dispose();
-                    st.areaSelected( getBounds() );
+                    screenshot.handleSelection( getBounds() );
                 }
             });
         }
