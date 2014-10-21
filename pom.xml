@@ -91,6 +91,7 @@
 			<!-- Bundle as an OSX app running Java1.7+ -->
 			<!-- NOTE: Requires an installation of the appbundler-plugin (https://github.com/federkasten/appbundler-plugin) -->
 			<!-- Uncomment this plugin if you want to generate a OSX app -->
+<!--
 
 			<plugin>
 				<groupId>io.github.appbundler</groupId>
@@ -109,11 +110,12 @@
 					</execution>
 				</executions>
 			</plugin>
-
+-->
 
 			<!-- Creates a windows executable -->
 			<!-- Uncomment this plugin if you want to generate a windows exe -->
-			<!-- <plugin> <groupId>com.akathist.maven.plugins.launch4j</groupId> <artifactId>launch4j-maven-plugin</artifactId> 
+
+<plugin> <groupId>com.akathist.maven.plugins.launch4j</groupId> <artifactId>launch4j-maven-plugin</artifactId> 
 				<version>1.5.1</version> <executions> <execution> <id>l4j-clui</id> <phase>package</phase> 
 				<goals> <goal>launch4j</goal> </goals> <configuration> <headerType>gui</headerType> 
 				<jar>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar</jar> 
@@ -126,7 +128,7 @@
 				<txtProductVersion>1.0.0.0</txtProductVersion> <productName>${project.name}</productName> 
 				<companyName></companyName> <internalName>Barcode Decoder</internalName> 
 				<originalFilename>barcode-decoder-win.exe</originalFilename> </versionInfo> 
-				</configuration> </execution> </executions> </plugin> -->
+				</configuration> </execution> </executions> </plugin>
 		</plugins>
 	</build>
 
