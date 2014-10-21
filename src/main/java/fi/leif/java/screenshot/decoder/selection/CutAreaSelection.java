@@ -42,7 +42,7 @@ public class CutAreaSelection {
             public void run() {
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                } catch (Exception ex) {
                 }
 
                 JFrame frame = new JFrame();

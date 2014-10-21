@@ -47,14 +47,14 @@
 	</configuration>
       </plugin>
 
-      <!-- Set runtime version to 1.7 -->
+      <!-- Set runtime version to 1.6 -->
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-compiler-plugin</artifactId>
 	<version>2.3.2</version>
 	<configuration>
-	  <target>1.7</target>
-	  <source>1.7</source>
+	  <target>1.6</target>
+	  <source>1.6</source>
 	</configuration>
       </plugin>
 
@@ -158,34 +158,34 @@
 		<phase>package</phase> 
 		<goals> 
 		  <goal>launch4j</goal>
-		  </goals> 
-		  <configuration> 
-		    A<headerType>gui</headerType> 
-		    <jar>${project.build.directory}/${project.artifactId}-${project.version}-full.jar</jar> 
-		    <outfile>${project.build.directory}/screenshot-decoder-win.exe</outfile> 
-		    <downloadUrl>http://java.com/download</downloadUrl> 
-		    <classPath> 
+		</goals> 
+		<configuration> 
+		  A<headerType>gui</headerType> 
+		  <jar>${project.build.directory}/${project.artifactId}-${project.version}-full.jar</jar> 
+		  <outfile>${project.build.directory}/screenshot-decoder-win.exe</outfile> 
+		  <downloadUrl>http://java.com/download</downloadUrl> 
+		  <classPath> 
 		    <mainClass>${mainClass}</mainClass> 
 		    <preCp>anything</preCp> 
-		    </classPath> 
-		    <icon>src/main/resources/icons/screenshot-decoder.ico</icon> 
-		    <jre> 
-		      <minVersion>1.7.0</minVersion> 
-		      <jdkPreference>preferJre</jdkPreference> 
-		      </jre> 
-		      <versionInfo> 
-			<fileVersion>1.0.0.0</fileVersion> 
-			<txtFileVersion>${project.version}</txtFileVersion> 
-			<fileDescription>${project.name}</fileDescription> 
-			<copyright>2014 leif.fi</copyright> 
-			<productVersion>1.0.0.0</productVersion> 
-			<txtProductVersion>1.0.0.0</txtProductVersion> 
-			<productName>${project.name}</productName> 
-			<companyName></companyName> 
-			<internalName>Screenshot Decoder</internalName> 
-		      <originalFilename>screenshot-decoder-win.exe</originalFilename> 
-		      </versionInfo> 
-		  </configuration> 
+		  </classPath> 
+		  <icon>src/main/resources/icons/screenshot-decoder.ico</icon> 
+		  <jre> 
+		    <minVersion>1.6.0</minVersion> 
+		    <jdkPreference>preferJre</jdkPreference> 
+		  </jre> 
+		  <versionInfo> 
+		    <fileVersion>1.0.0.0</fileVersion> 
+		    <txtFileVersion>${project.version}</txtFileVersion> 
+		    <fileDescription>${project.name}</fileDescription> 
+		    <copyright>2014 leif.fi</copyright> 
+		    <productVersion>1.0.0.0</productVersion> 
+		    <txtProductVersion>1.0.0.0</txtProductVersion> 
+		    <productName>${project.name}</productName> 
+		    <companyName></companyName> 
+		    <internalName>Screenshot Decoder</internalName> 
+		    <originalFilename>screenshot-decoder-win.exe</originalFilename> 
+		  </versionInfo> 
+		</configuration> 
 	      </execution> 
 	    </executions> 
 	  </plugin>
