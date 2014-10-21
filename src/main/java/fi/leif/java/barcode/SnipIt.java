@@ -3,6 +3,7 @@ package fi.leif.java.barcode;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -52,6 +53,8 @@ public class SnipIt {
                 frame.add(pane);
                 frame.setBounds(getVirtualBounds());
                 frame.setVisible(true);
+                frame.setCursor(Cursor.CROSSHAIR_CURSOR);
+
             }
             
         });
@@ -146,7 +149,7 @@ public class SnipIt {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     SwingUtilities.getWindowAncestor(SelectionPane.this).dispose();
-                    st.areaSelected(null);
+                    st.areaSelected( getBounds() );
                 }
             });
         }

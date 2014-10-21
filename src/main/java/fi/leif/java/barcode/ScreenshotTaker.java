@@ -8,7 +8,17 @@ import java.awt.image.BufferedImage;
 public class ScreenshotTaker {
     
     public ScreenshotTaker() {
-        new SelectionRectangle(this);
+        // new SelectionRectangle(this);
+        new SnipIt(this);
+    }
+
+    public void areaSelected(Rectangle r) {
+        try {
+            BufferedImage img = new Robot().createScreenCapture(r);
+            areaSelected(img);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     
     public void areaSelected(BufferedImage screenshot) {
