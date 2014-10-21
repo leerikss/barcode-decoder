@@ -91,7 +91,7 @@
 			<!-- Bundle as an OSX app running Java1.7+ -->
 			<!-- NOTE: Requires an installation of the appbundler-plugin (https://github.com/federkasten/appbundler-plugin) -->
 			<!-- Uncomment this plugin if you want to generate a OSX app -->
-<!-- 			
+
 			<plugin>
 				<groupId>io.github.appbundler</groupId>
 				<artifactId>appbundle-maven-plugin</artifactId>
@@ -109,8 +109,8 @@
 					</execution>
 				</executions>
 			</plugin>
- -->
- 
+
+
 			<!-- Creates a windows executable -->
 			<!-- Uncomment this plugin if you want to generate a windows exe -->
 			<!-- <plugin> <groupId>com.akathist.maven.plugins.launch4j</groupId> <artifactId>launch4j-maven-plugin</artifactId> 

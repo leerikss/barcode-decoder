@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -49,7 +50,7 @@ public class SelectionRectangle {
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                 }
 
-                JFrame frame = new JFrame("Test");
+                JFrame frame = new JFrame("Decoder");
                 frame.setUndecorated(true);
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,6 +59,7 @@ public class SelectionRectangle {
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
+                frame.setCursor(Cursor.CROSSHAIR_CURSOR);
             }
 
         });
@@ -166,7 +168,7 @@ public class SelectionRectangle {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g.create();
-            g2d.setColor(new Color(128, 128, 128, 64));
+            g2d.setColor(new Color(255, 255, 0, 64));
             g2d.fillRect(0, 0, getWidth(), getHeight());
 
             float dash1[] = {3.0f};
