@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0.0
-Name=ScreenshotDecoder
+Name=Screenshot Decoder
 Comment=App for decoding a screenshot code
-Exec=java -jar /home/leerikss/dev/screenshot-decoder/target/screenshot-decoder-1.0.0.jar
+Exec=/home/leerikss/dev/screenshot-decoder/release/screenshot-decoder-linux.run
 Icon=/home/leerikss/dev/screenshot-decoder/src/main/resources/icons/screenshot-decoder.png
 Terminal=false
 Type=Application
