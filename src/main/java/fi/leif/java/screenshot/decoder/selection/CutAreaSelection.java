@@ -153,7 +153,6 @@ public class CutAreaSelection {
             this.setFocusable(true);
             
             // Decode button
-            setLayout(new GridBagLayout());
             JButton button = new JButton("Decode");
             button.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR) );
             button.addActionListener(new ActionListener() {
@@ -163,7 +162,11 @@ public class CutAreaSelection {
                     screenshot.handleSelection( getBounds() );
                 }
             });
+            setLayout(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
+            gbc.weighty = 1;
+            gbc.weightx = 1;
+            gbc.anchor = GridBagConstraints.SOUTHEAST;
             add(button, gbc);
         }
 
@@ -171,15 +174,15 @@ public class CutAreaSelection {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g.create();
-            float dash1[] = {4.0f};
+            float dash1[] = {5.0f};
             BasicStroke dashed =
                     new BasicStroke(1.0f,
                     BasicStroke.CAP_BUTT,
                     BasicStroke.JOIN_MITER,
                     1.0f, dash1, 0.0f);
-            g2d.setColor(Color.GRAY);
+            g2d.setColor(Color.LIGHT_GRAY);
             g2d.setStroke(dashed);
-            g2d.drawRect(0, 0, getWidth() - 3, getHeight() - 3);
+            g2d.drawRect(0, 0, getWidth()-1, getHeight()-1);
             g2d.dispose();
         }
     }

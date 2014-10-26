@@ -2,9 +2,11 @@ package fi.leif.java.screenshot.decoder.selection;
 
 import java.awt.AWTException;
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -155,7 +157,6 @@ public class FillAreaSelection {
             this.setFocusable(true);
             
             // Decode button
-            setLayout(new GridBagLayout());
             JButton button = new JButton("Decode");
             button.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR) );
             button.addActionListener(new ActionListener() {
@@ -169,7 +170,11 @@ public class FillAreaSelection {
                     
                 }
             });
+            setLayout(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
+            gbc.weighty = 1;
+            gbc.weightx = 1;
+            gbc.anchor = GridBagConstraints.SOUTHEAST;
             add(button, gbc);
         }
 
@@ -177,18 +182,18 @@ public class FillAreaSelection {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g.create();
-            g2d.setColor(new Color(255, 255, 0, 64));
+            g2d.setColor(new Color(100, 100, 255, 64));
             g2d.fillRect(0, 0, getWidth(), getHeight());
 
-            float dash1[] = {3.0f};
+            float dash1[] = {5.0f};
             BasicStroke dashed =
                             new BasicStroke(1.0f,
                             BasicStroke.CAP_BUTT,
                             BasicStroke.JOIN_MITER,
                             1.0f, dash1, 0.0f);
-            g2d.setColor(Color.GRAY);
+            g2d.setColor(new Color(100, 100, 255, 64));
             g2d.setStroke(dashed);
-            g2d.drawRect(0, 0, getWidth() - 3, getHeight() - 3);
+            g2d.drawRect(0, 0, getWidth()-1, getHeight()-1);
             g2d.dispose();
         }
 
