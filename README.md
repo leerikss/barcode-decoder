@@ -1,5 +1,7 @@
 # About
-TODO
+A simple app to decode barcodes (or QR codes). 
+Start the app, draw a selection around the code and click "Decode".
+If successfull, the decoded code is put into the system clipboard
 
 # Linux
 ## Build
@@ -11,7 +13,7 @@ mvn package -Plinux
 ```
 java -jar target/screenshot-decoder-1.0.0-full.jar
 ```
-## Optional: wrap the jar into one single executable shell script
+## Optional I: wrap the jar into one single executable shell script
 ```
 cat src/main/scripts/stub.sh target/screenshot-decoder-1.0.0-full.jar > target/screenshot-decoder-linux.run
 chmod +x target/screenshot-decoder-linux.run
@@ -21,6 +23,13 @@ chmod +x target/screenshot-decoder-linux.run
 ```
 export DISPLAY=":0.0"
 ```
+## Optional II: Add a launcher (Ubuntu Unity etc)
+- Edit the release/screenshot-decoder-linux.desktop file and change the following paths:
+```
+Exec=/home/leerikss/dev/screenshot-decoder/release/screenshot-decoder-linux.run
+Icon=/home/leerikss/dev/screenshot-decoder/src/main/resources/icons/screenshot-decoder.png
+```
+- Drag the "Screenshot Decoder" launcher into your launchbar
 
 # OSX
 ## Build a bundled native app
@@ -39,10 +48,14 @@ mvn package -Pwin
 - This generates the "screenshot-decoder-win.exe" file under the target/ folder
 
 # Eclipse
-If you're using the Eclipse IDE, add the necessary eclipse project files by running
+- If you're using the Eclipse IDE, add the necessary eclipse project files by running
 ```
 mvn eclipse:eclipse
 ```
+
+# Release
+- Prebuilt binaries for windows,OSX and Linux can be found in the release/ folder
+
 # Credits
 - zxing (https://github.com/zxing/zxing)
 - appbundler-plugin (https://github.com/federkasten/appbundler-plugin)

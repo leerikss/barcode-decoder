@@ -5,7 +5,7 @@
   <groupId>fi.leif.java.screenshot.decoder</groupId>
   <artifactId>screenshot-decoder</artifactId>
   <version>1.0.0</version>
-  <name>Screenshot decoder</name>
+  <name>Screenshot Decoder</name>
 
   <description>A simple application for decoding codes (barcodes, QR codes) from a screenshot</description>
 
