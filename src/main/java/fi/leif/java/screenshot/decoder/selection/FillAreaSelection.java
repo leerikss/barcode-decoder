@@ -2,11 +2,9 @@ package fi.leif.java.screenshot.decoder.selection;
 
 import java.awt.AWTException;
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -172,9 +170,10 @@ public class FillAreaSelection {
             });
             setLayout(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
-            gbc.weighty = 1;
-            gbc.weightx = 1;
+            gbc.weighty = 0.9;
+            gbc.weightx = 0.9;
             gbc.anchor = GridBagConstraints.SOUTHEAST;
+            gbc.insets = new Insets(3,3,3,3);
             add(button, gbc);
         }
 
