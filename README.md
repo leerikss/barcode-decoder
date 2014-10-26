@@ -13,9 +13,10 @@ mvn package -Plinux
 ```
 java -jar target/screenshot-decoder-1.0.0-full.jar
 ```
-- Notice that due to a clipboard persistence bug in X11-based operating systems, the decoded string
+Notice that due to a clipboard persistence bug in X11-based operating systems, the decoded string
 will not stay in the clipboard once the application quits. One workaraound is to not click "Ok"
-on the popup before you've pasted the decoded code from the clipboard
+on the popup before you've pasted the decoded code from the clipboard.
+
 ## Optional I: Wrap the jar into one single executable shell script
 ```
 cat src/main/scripts/stub.sh target/screenshot-decoder-1.0.0-full.jar > target/screenshot-decoder-linux.run
@@ -51,13 +52,13 @@ mvn package -Pwin
 - This generates the "screenshot-decoder-win.exe" file under the target/ folder
 
 # Eclipse
-- If you're using the Eclipse IDE, add the necessary eclipse project files by running
+If you're using the Eclipse IDE, add the necessary eclipse project files by running
 ```
 mvn eclipse:eclipse
 ```
 
 # Release
-- Prebuilt binaries for windows,OSX and Linux can be found in the release/ folder
+Prebuilt binaries for windows,OSX and Linux can be found in the release/ folder
 
 # Credits
 - zxing (https://github.com/zxing/zxing)
