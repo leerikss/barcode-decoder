@@ -20,9 +20,9 @@ public class ScreenshotImpl implements Screenshot {
             String code = Decoder.decodeImage(img);
             ClipboardUtil.setTextToClipboard(code);
             System.out.println(code);
-            Popup.show("Code was decoded successfully into clipboard!\nCode: "+code);
+            Popup.show(code);
         } catch(Exception e) {
-            Popup.show("Unable to decode code");
+            Popup.show("Unable to decode!");
             e.printStackTrace();
         }        
     }
