@@ -2,8 +2,8 @@
 Version=1.0.0
 Name=Screenshot Decoder
 Comment=App for decoding a screenshot code
-Exec=${HOME}/github/screenshot-decoder/release/screenshot-decoder-linux.run
-Icon=${HOME}/github/screenshot-decoder/src/main/resources/icons/screenshot-decoder.png
+Exec=/home/leerikss/github/screenshot-decoder/release/screenshot-decoder-linux.run
+Icon=/home/leerikss/github/screenshot-decoder/src/main/resources/icons/screenshot-decoder.png
 Terminal=false
 Type=Application
 Categories=Utility;Application;

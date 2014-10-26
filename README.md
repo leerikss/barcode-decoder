@@ -30,8 +30,8 @@ export DISPLAY=":0.0"
 ## Optional II: Add a launcher (Ubuntu Unity etc)
 - Edit the release/screenshot-decoder-linux.desktop file and fix the following paths:
 ```
-Exec=/home/leerikss/dev/screenshot-decoder/release/screenshot-decoder-linux.run
-Icon=/home/leerikss/dev/screenshot-decoder/src/main/resources/icons/screenshot-decoder.png
+Exec=/home/leerikss/github/screenshot-decoder/release/screenshot-decoder-linux.run
+Icon=/home/leerikss/github/screenshot-decoder/src/main/resources/icons/screenshot-decoder.png
 ```
 - Drag the "Screenshot Decoder" launcher into your launchbar
 
