@@ -173,7 +173,7 @@ public class FillAreaSelection {
             gbc.weighty = 0.9;
             gbc.weightx = 0.9;
             gbc.anchor = GridBagConstraints.SOUTHEAST;
-            gbc.insets = new Insets(3,3,3,3);
+            gbc.insets = new Insets(5,5,5,5);
             add(button, gbc);
         }
 
