@@ -18,11 +18,11 @@ public class ScreenshotImpl implements Screenshot {
     public void handleImage(BufferedImage img) {
         try {
             String code = Decoder.decodeImage(img);
-            Popup.show("Code:\n"+code);
+            Popup.show(code);
             ClipboardUtil.setTextToClipboard(code);
             System.out.println(code);
         } catch(Exception e) {
-            Popup.show("Unable to decode code");
+            Popup.show("Unable to decode!");
             e.printStackTrace();
         }        
     }
