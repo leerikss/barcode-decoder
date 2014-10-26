@@ -1,7 +1,7 @@
 # About
-A simple app to decode barcodes (or QR codes). 
-Start the app, draw a selection around the code and click "Decode".
-If successful, the decoded code is put into the system clipboard
+A simple desktop App that decodes barcodes (or QR codes). 
+Start the app, draw a selection around the code you wish to decode, and click "Decode".
+If successful, the decoded code is put into the system clipboard.
 
 # Linux
 ## Build
