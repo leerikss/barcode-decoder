@@ -11,6 +11,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -54,28 +55,7 @@ public class CutAreaSelection {
                 frame.setBounds(getVirtualBounds());
                 frame.setVisible(true);
                 frame.setCursor( Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR) );
-                
-                // Escape to exit listener
-                frame.addKeyListener( new KeyListener() {
-
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                            System.exit(0);
-                        }
-                    }
-                    
-                });
-            }
-            
+            }            
         });
     }
 
@@ -153,6 +133,24 @@ public class CutAreaSelection {
 
         public SelectionPane() {
             setOpaque(false);
+            
+            // Quit app if escape is pressed
+            this.addKeyListener( new KeyListener() {
+
+                @Override
+                public void keyTyped(KeyEvent e) {}
+
+                @Override
+                public void keyPressed(KeyEvent e) {}
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        System.exit(0);
+                    }
+                }
+            });  
+            this.setFocusable(true);
             
             // Decode button
             setLayout(new GridBagLayout());

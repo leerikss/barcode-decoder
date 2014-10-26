@@ -10,6 +10,9 @@ import fi.leif.java.screenshot.decoder.tools.Popup;
 
 public class ScreenshotImpl implements Screenshot {
 
+    public ScreenshotImpl() {
+    }
+    
     @Override
     public void handleSelection(Rectangle r) {
     }

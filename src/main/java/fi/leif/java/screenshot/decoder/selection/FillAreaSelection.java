@@ -58,26 +58,6 @@ public class FillAreaSelection {
                 frame.add(new BackgroundPane());
                 frame.setVisible(true);
                 frame.setCursor( Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR) );
-                
-                // Escape to exit listener
-                frame.addKeyListener( new KeyListener() {
-
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                            System.exit(0);
-                        }
-                    }
-                    
-                });                
             }
         });
     }
@@ -155,6 +135,24 @@ public class FillAreaSelection {
 
         public SelectionPane() {
             setOpaque(false);
+            
+            // Quit app if escape is pressed
+            this.addKeyListener( new KeyListener() {
+
+                @Override
+                public void keyTyped(KeyEvent e) {}
+
+                @Override
+                public void keyPressed(KeyEvent e) {}
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        System.exit(0);
+                    }
+                }
+            });  
+            this.setFocusable(true);
             
             // Decode button
             setLayout(new GridBagLayout());
