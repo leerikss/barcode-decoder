@@ -159,6 +159,7 @@ public class FillAreaSelection {
             // Decode button
             setLayout(new GridBagLayout());
             JButton button = new JButton("Decode");
+            button.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR) );
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
