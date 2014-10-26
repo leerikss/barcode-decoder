@@ -18,9 +18,9 @@ public class ScreenshotImpl implements Screenshot {
     public void handleImage(BufferedImage img) {
         try {
             String code = Decoder.decodeImage(img);
-            Popup.show("Code was decoded successfully into clipboard!\nCode: "+code);
             ClipboardUtil.setTextToClipboard(code);
             System.out.println(code);
+            Popup.show("Code was decoded successfully into clipboard!\nCode: "+code);
         } catch(Exception e) {
             Popup.show("Unable to decode code");
             e.printStackTrace();

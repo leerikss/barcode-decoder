@@ -17,6 +17,6 @@ public class ClipboardUtil {
     public static void setTextToClipboard(String text) {
         StringSelection stringSelection = new StringSelection(text);
         Clipboard cp = Toolkit.getDefaultToolkit().getSystemClipboard();
-        cp.setContents(stringSelection, null);
+        cp.setContents(stringSelection, stringSelection);
     }
 }
