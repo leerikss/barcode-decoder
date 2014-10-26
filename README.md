@@ -1,7 +1,7 @@
 # About
 A simple app to decode barcodes (or QR codes). 
 Start the app, draw a selection around the code and click "Decode".
-If successfull, the decoded code is put into the system clipboard
+If successful, the decoded code is put into the system clipboard
 
 # Linux
 ## Build
@@ -12,6 +12,9 @@ mvn package -Plinux
 ## Run
 ```
 java -jar target/screenshot-decoder-1.0.0-full.jar
+- Notice that due to a clipboard persistence bug in X11-based operating systems, the decoded string
+will not stay in the clipboard once the application quits. One workaraound is to not click "Ok"
+on the popup before you've pasted the decoded code from the clipboard
 ```
 ## Optional I: Wrap the jar into one single executable shell script
 ```
