@@ -13,7 +13,7 @@ mvn package -Plinux
 ```
 java -jar target/screenshot-decoder-1.0.0-full.jar
 ```
-## Optional I: wrap the jar into one single executable shell script
+## Optional I: Wrap the jar into one single executable shell script
 ```
 cat src/main/scripts/stub.sh target/screenshot-decoder-1.0.0-full.jar > target/screenshot-decoder-linux.run
 chmod +x target/screenshot-decoder-linux.run
@@ -24,7 +24,7 @@ chmod +x target/screenshot-decoder-linux.run
 export DISPLAY=":0.0"
 ```
 ## Optional II: Add a launcher (Ubuntu Unity etc)
-- Edit the release/screenshot-decoder-linux.desktop file and change the following paths:
+- Edit the release/screenshot-decoder-linux.desktop file and fix the following paths:
 ```
 Exec=/home/leerikss/dev/screenshot-decoder/release/screenshot-decoder-linux.run
 Icon=/home/leerikss/dev/screenshot-decoder/src/main/resources/icons/screenshot-decoder.png
@@ -40,7 +40,7 @@ mvn package appbundle:bundle -Posx
 ```
 - The app "Screenshot decoder" is being generated into the target/screenshot-decoder-1.0.0/
 
-## Windows
+# Windows
 - Run
 ```
 mvn package -Pwin
