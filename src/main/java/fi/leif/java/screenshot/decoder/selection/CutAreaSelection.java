@@ -15,6 +15,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Area;
@@ -24,7 +26,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import fi.leif.java.screenshot.decoder.Screenshot;
 
@@ -42,21 +43,37 @@ public class CutAreaSelection {
             public void run() {
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (Exception ex) {
-                }
+                } catch (Exception ex) {}
 
                 JFrame frame = new JFrame();
                 frame.setUndecorated(true);
-                // This works differently under Java 6
                 frame.setBackground(new Color(0, 0, 0, 0));
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setLayout(new BorderLayout());
                 pane = new SnipItPane();
                 frame.add(pane);
                 frame.setBounds(getVirtualBounds());
                 frame.setVisible(true);
-                frame.setCursor(Cursor.CROSSHAIR_CURSOR);
+                frame.setCursor( Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR) );
+                
+                // Escape to exit listener
+                frame.addKeyListener( new KeyListener() {
 
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                            System.exit(0);
+                        }
+                    }
+                    
+                });
             }
             
         });
@@ -70,10 +87,13 @@ public class CutAreaSelection {
         private SelectionPane selectionPane;
 
         public SnipItPane() {
+            
             setOpaque(false);
             setLayout(null);
             selectionPane = new SelectionPane();
             add(selectionPane);
+            
+            // Mouse event
             MouseAdapter adapter = new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
@@ -131,22 +151,12 @@ public class CutAreaSelection {
 
     public class SelectionPane extends JPanel {
 
-        private JButton button;
-        // private JLabel label;
-
         public SelectionPane() {
-            button = new JButton("Select");
             setOpaque(false);
-
+            
+            // Decode button
             setLayout(new GridBagLayout());
-
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-
-            gbc.gridy++;
-            add(button, gbc);
-
+            JButton button = new JButton("Decode");
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -154,17 +164,14 @@ public class CutAreaSelection {
                     screenshot.handleSelection( getBounds() );
                 }
             });
+            GridBagConstraints gbc = new GridBagConstraints();
+            add(button, gbc);
         }
 
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g.create();
-            // I've chosen NOT to fill this selection rectangle, so that
-            // it now appears as if you're "cutting" away the selection
-//            g2d.setColor(new Color(128, 128, 128, 64));
-//            g2d.fillRect(0, 0, getWidth(), getHeight());
-
             float dash1[] = {4.0f};
             BasicStroke dashed =
                     new BasicStroke(1.0f,
@@ -185,12 +192,8 @@ public class CutAreaSelection {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice lstGDs[] = ge.getScreenDevices();
         for (GraphicsDevice gd : lstGDs) {
-
             bounds.add(gd.getDefaultConfiguration().getBounds());
-
         }
-
         return bounds;
-
     }
 }

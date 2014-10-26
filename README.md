@@ -46,3 +46,4 @@ mvn eclipse:eclipse
 # Credits
 - zxing (https://github.com/zxing/zxing)
 - appbundler-plugin (https://github.com/federkasten/appbundler-plugin)
+- http://stackoverflow.com/questions/13948122/drawing-a-bounding-rectangle-to-select-what-area-to-record

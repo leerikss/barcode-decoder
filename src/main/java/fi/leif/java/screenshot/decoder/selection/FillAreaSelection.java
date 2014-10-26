@@ -2,7 +2,6 @@ package fi.leif.java.screenshot.decoder.selection;
 
 import java.awt.AWTException;
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
@@ -20,6 +19,8 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -31,7 +32,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import fi.leif.java.screenshot.decoder.Screenshot;
 
@@ -57,9 +57,28 @@ public class FillAreaSelection {
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 frame.add(new BackgroundPane());
                 frame.setVisible(true);
-                frame.setCursor(Cursor.CROSSHAIR_CURSOR);
-            }
+                frame.setCursor( Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR) );
+                
+                // Escape to exit listener
+                frame.addKeyListener( new KeyListener() {
 
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                            System.exit(0);
+                        }
+                    }
+                    
+                });                
+            }
         });
     }
 
@@ -116,7 +135,6 @@ public class FillAreaSelection {
                     selectionPane.revalidate();
                     repaint();
                 }
-
             };
             addMouseListener(adapter);
             addMouseMotionListener(adapter);
@@ -135,21 +153,12 @@ public class FillAreaSelection {
 
     public class SelectionPane extends JPanel {
 
-        private JButton button;
-
         public SelectionPane() {
-            button = new JButton("Decode");
             setOpaque(false);
-
+            
+            // Decode button
             setLayout(new GridBagLayout());
-
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-
-            gbc.gridy++;
-            add(button, gbc);
-
+            JButton button = new JButton("Decode");
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -158,8 +167,11 @@ public class FillAreaSelection {
                     BufferedImage img = background.getSubimage((int)r.getMinX(), (int)r.getMinY(), 
                             (int)r.getWidth(), (int)r.getHeight() );
                     screenshot.handleImage( img);
+                    
                 }
             });
+            GridBagConstraints gbc = new GridBagConstraints();
+            add(button, gbc);
         }
 
         @Override
