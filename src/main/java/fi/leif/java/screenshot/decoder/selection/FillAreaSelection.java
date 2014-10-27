@@ -133,6 +133,8 @@ public class FillAreaSelection {
 
     public class SelectionPane extends JPanel {
 
+        public GridBagConstraints gbc;
+        
         public SelectionPane() {
             setOpaque(false);
             
@@ -169,9 +171,9 @@ public class FillAreaSelection {
                 }
             });
             setLayout(new GridBagLayout());
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.weighty = 0.9;
-            gbc.weightx = 0.9;
+            gbc = new GridBagConstraints();
+            gbc.weighty = 1;
+            gbc.weightx = 1;
             gbc.anchor = GridBagConstraints.SOUTHEAST;
             gbc.insets = new Insets(5,5,5,5);
             add(button, gbc);
@@ -179,9 +181,12 @@ public class FillAreaSelection {
 
         @Override
         protected void paintComponent(Graphics g) {
+            // Fill color
+            Color c = new Color(0, 75, 255, 50);
+            
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g.create();
-            g2d.setColor(new Color(100, 100, 255, 64));
+            g2d.setColor(c);
             g2d.fillRect(0, 0, getWidth(), getHeight());
 
             float dash1[] = {5.0f};
@@ -190,7 +195,7 @@ public class FillAreaSelection {
                             BasicStroke.CAP_BUTT,
                             BasicStroke.JOIN_MITER,
                             1.0f, dash1, 0.0f);
-            g2d.setColor(new Color(100, 100, 255, 64));
+            g2d.setColor(c);
             g2d.setStroke(dashed);
             g2d.drawRect(0, 0, getWidth()-1, getHeight()-1);
             g2d.dispose();
